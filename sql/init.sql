@@ -14,10 +14,10 @@ IF OBJECT_ID('dbo.Users', 'U') IS NOT NULL
 GO
 
 CREATE TABLE dbo.Users (
-  Id INT IDENTITY(1,1) PRIMARY KEY,
-  Email NVARCHAR(255) NOT NULL UNIQUE,
-  PasswordHash NVARCHAR(255) NOT NULL,
-  CreatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  email NVARCHAR(255) NOT NULL UNIQUE,
+  passwordHash NVARCHAR(255) NOT NULL,
+  createdAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
 );
 GO
 
@@ -26,20 +26,20 @@ IF OBJECT_ID('dbo.Tasks', 'U') IS NOT NULL
 GO
 
 CREATE TABLE dbo.Tasks (
-  Id INT IDENTITY(1,1) PRIMARY KEY,
-  UserId INT NOT NULL,
-  Title NVARCHAR(255) NOT NULL,
-  Description NVARCHAR(1000) NULL,
-  IsCompleted BIT NOT NULL DEFAULT 0,
-  CreatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
-  UpdatedAt DATETIME2 NULL,
-  CONSTRAINT FK_Tasks_Users FOREIGN KEY (UserId)
-    REFERENCES dbo.Users (Id)
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  userId INT NOT NULL,
+  title NVARCHAR(255) NOT NULL,
+  description NVARCHAR(1000) NULL,
+  isCompleted BIT NOT NULL DEFAULT 0,
+  createdAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+  updatedAt DATETIME2 NULL,
+  CONSTRAINT FK_Tasks_Users FOREIGN KEY (userId)
+    REFERENCES dbo.Users (id)
     ON DELETE CASCADE
 );
 GO
 
 -- Usuario de prueba (password en texto plano, solo de muestra)
-INSERT INTO dbo.Users (Email, PasswordHash)
+INSERT INTO dbo.Users (email, passwordHash)
 VALUES ('nestor@jgr-construction.com', 'Test123456789*');
 GO

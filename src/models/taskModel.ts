@@ -10,13 +10,13 @@ export async function createTask(params: {
     const pool = await getPool();
     const result = await pool
         .request()
-        .input('UserId', sql.Int, params.userId)
-        .input('Title', sql.NVarChar(255), params.title)
-        .input('Description', sql.NVarChar(1000), params.description || null)
+        .input('userId', sql.Int, params.userId)
+        .input('title', sql.NVarChar(255), params.title)
+        .input('description', sql.NVarChar(1000), params.description || null)
         .query<Task>(`
-            INSERT INTO dbo.Tasks (UserId, Title, Description)
+            INSERT INTO dbo.Tasks (userId, title, description)
             OUTPUT INSERTED.*
-            VALUES (@UserId, @Title, @Description)
+            VALUES (@userId, @title, @description)
         `);
 
     return result.recordset[0];
@@ -27,12 +27,12 @@ export async function getTasksByUser(userId: number): Promise<Task[]> {
     const pool = await getPool();
     const result = await pool
         .request()
-        .input('UserId', sql.Int, userId)
+        .input('userId', sql.Int, userId)
         .query<Task>(`
             SELECT *
             FROM dbo.Tasks
-            WHERE UserId = @UserId
-            ORDER BY CreatedAt DESC
+            WHERE userId = @userId
+            ORDER BY createdAt DESC
         `);
 
     return result.recordset;
@@ -46,12 +46,12 @@ export async function getTaskById(
     const pool = await getPool();
     const result = await pool
         .request()
-        .input('Id', sql.Int, id)
-        .input('UserId', sql.Int, userId)
+        .input('id', sql.Int, id)
+        .input('userId', sql.Int, userId)
         .query<Task>(`
             SELECT *
             FROM dbo.Tasks
-            WHERE Id = @Id AND UserId = @UserId
+            WHERE id = @id AND userId = @userId
         `);
 
     return result.recordset[0];
@@ -70,19 +70,19 @@ export async function updateTask(
     const pool = await getPool();
     const result = await pool
         .request()
-        .input('Id', sql.Int, id)
-        .input('UserId', sql.Int, userId)
-        .input('Title', sql.NVarChar(255), params.title)
-        .input('Description', sql.NVarChar(1000), params.description || null)
-        .input('IsCompleted', sql.Bit, params.isCompleted)
+        .input('id', sql.Int, id)
+        .input('userId', sql.Int, userId)
+        .input('title', sql.NVarChar(255), params.title)
+        .input('description', sql.NVarChar(1000), params.description || null)
+        .input('isCompleted', sql.Bit, params.isCompleted)
         .query<Task>(`
             UPDATE dbo.Tasks
-            SET Title = @Title,
-                Description = @Description,
-                IsCompleted = @IsCompleted,
-                UpdatedAt = SYSUTCDATETIME()
+            SET title = @title,
+                description = @description,
+                isCompleted = @isCompleted,
+                updatedAt = SYSUTCDATETIME()
             OUTPUT INSERTED.*
-            WHERE Id = @Id AND UserId = @UserId
+            WHERE id = @id AND userId = @userId
         `);
 
     return result.recordset[0];
@@ -96,11 +96,11 @@ export async function deleteTask(
     const pool = await getPool();
     const result = await pool
         .request()
-        .input('Id', sql.Int, id)
-        .input('UserId', sql.Int, userId)
+        .input('id', sql.Int, id)
+        .input('userId', sql.Int, userId)
         .query(`
             DELETE FROM dbo.Tasks
-            WHERE Id = @Id AND UserId = @UserId
+            WHERE id = @id AND userId = @userId
         `);
 
     return result.rowsAffected[0] > 0;
