@@ -40,11 +40,11 @@ export async function getUserById(id: number): Promise<User | undefined> {
     const pool = await getPool();
     const result = await pool
         .request()
-        .input('Id', sql.Int, id)
+        .input('id', sql.Int, id)
         .query<User>(`
-            SELECT Id, Email, CreatedAt
+            SELECT id, email, createdAt
             FROM dbo.Users
-            WHERE Id = @Id
+            WHERE id = @id
         `);
 
     return result.recordset[0];
