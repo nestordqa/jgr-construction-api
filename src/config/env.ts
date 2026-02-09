@@ -8,7 +8,7 @@ export const env = {
         server: process.env.DB_SERVER || 'localhost',
         port: Number(process.env.DB_PORT) || 1433,
         user: process.env.DB_USER || 'sa',
-        password: process.env.DB_PASSWORD || 'Password123*!',
+        password: process.env.DB_PASSWORD || 'JGRConstruction123!',
         database: process.env.DB_NAME || 'JGRConstructionDB'
     },
     jwt: {

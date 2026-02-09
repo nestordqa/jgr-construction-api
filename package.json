@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "init-db": "docker run --rm -v \"%cd%/sql:/scripts\" --network host mcr.microsoft.com/mssql-tools /opt/mssql-tools/bin/sqlcmd -S localhost,1433 -U sa -P JGRConstruction123! -i /scripts/init.sql"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

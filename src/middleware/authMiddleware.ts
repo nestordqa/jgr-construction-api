@@ -17,7 +17,7 @@ export function authMiddleware(
 
     try {
         const decoded = verifyToken(token);
-            req.user = {
+        req.user = {
             id: decoded.sub,
             email: decoded.email
         };
