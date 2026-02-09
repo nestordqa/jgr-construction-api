@@ -3,6 +3,7 @@ import { dbConfig } from '../config/db';
 
 let pool: ConnectionPool | null = null;
 
+// DB Conection
 export async function getPool(): Promise<ConnectionPool> {
     if (pool) return pool;
     try {

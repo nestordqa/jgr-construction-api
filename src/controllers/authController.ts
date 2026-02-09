@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import * as authService from '../services/authService';
 
+// Register a new user
 export async function register(
     req: Request,
     res: Response,
@@ -25,6 +26,7 @@ export async function register(
     }
 }
 
+// Login an existing user
 export async function login(
     req: Request,
     res: Response,

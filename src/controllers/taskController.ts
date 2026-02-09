@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import * as taskService from '../services/taskService';
 
+//TASKS CRUD:
+
+//Create a New Task for the Authenticated User
 export async function createTask(
     req: Request,
     res: Response,
@@ -15,6 +18,7 @@ export async function createTask(
     }
 }
 
+// Get All Tasks for the Authenticated User
 export async function listTasks(
     req: Request,
     res: Response,
@@ -29,6 +33,7 @@ export async function listTasks(
     }
 }
 
+// Get a Single Task by ID for the Authenticated User
 export async function getTask(
     req: Request,
     res: Response,
@@ -44,6 +49,7 @@ export async function getTask(
     }
 }
 
+// Update a Task by ID for the Authenticated User
 export async function updateTask(
     req: Request,
     res: Response,
@@ -59,6 +65,7 @@ export async function updateTask(
     }
 }
 
+// Delete a Task by ID for the Authenticated User
 export async function deleteTask(
     req: Request,
     res: Response,

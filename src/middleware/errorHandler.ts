@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
+// Centralized Error Handling Middleware
 export function errorHandler(
     err: any,
     req: Request,

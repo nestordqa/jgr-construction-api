@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import { env } from '../config/env';
 import { DecodedToken } from '../types';
 
+// Generate a JWT Token for a Given Payload
 export function generateToken(payload: {
     sub: number;
     email: string;
@@ -11,6 +12,7 @@ export function generateToken(payload: {
     });
 }
 
+// Verify a JWT Token and Return the Decoded Payload
 export function verifyToken(token: string): DecodedToken {
     const decoded = jwt.verify(token, env.jwt.secret as string);
     if (
