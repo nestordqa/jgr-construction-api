@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../utils/token';
 
+// Authentication Middleware to Protect Routes
 export function authMiddleware(
     req: Request,
     res: Response,

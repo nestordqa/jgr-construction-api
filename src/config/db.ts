@@ -1,6 +1,7 @@
 import { config as SqlConfig } from 'mssql';
 import { env } from './env';
 
+// DB CONFIGURATION
 export const dbConfig: SqlConfig = {
     user: env.db.user,
     password: env.db.password,

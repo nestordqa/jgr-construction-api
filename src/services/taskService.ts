@@ -7,6 +7,7 @@ import {
 } from '../models/taskModel';
 import { Task } from '../types/models';
 
+// Create a New Task for the Authenticated User
 export async function createUserTask(
     userId: number,
     payload: { title?: string; description?: string }
@@ -24,10 +25,12 @@ export async function createUserTask(
     });
 }
 
+// Get All Tasks for the Authenticated User
 export async function listUserTasks(userId: number): Promise<Task[]> {
     return getTasksByUser(userId);
 }
 
+// Get a Single Task by ID for the Authenticated User
 export async function getUserTaskById(
     userId: number,
     taskId: number
@@ -41,6 +44,7 @@ export async function getUserTaskById(
     return task;
 }
 
+// Update a Task by ID for the Authenticated User
 export async function updateUserTask(
     userId: number,
     taskId: number,
@@ -65,6 +69,7 @@ export async function updateUserTask(
     return updated;
 }
 
+// Delete a Task by ID for the Authenticated User
 export async function deleteUserTask(
     userId: number,
     taskId: number

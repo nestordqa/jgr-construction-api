@@ -8,6 +8,7 @@ interface AuthResult {
     token: string;
 }
 
+// Register a New User and Return Auth Result
 export async function register(params: {
     email: string;
     password: string;
@@ -26,6 +27,7 @@ export async function register(params: {
     return { user, token };
 }
 
+// Authenticate User and Return Auth Result
 export async function login(params: {
     email: string;
     password: string;

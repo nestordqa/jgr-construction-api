@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Get environment variables from process.env and provide defaults
 export const env = {
     port: Number(process.env.PORT) || 4000,
     db: {

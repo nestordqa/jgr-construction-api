@@ -6,6 +6,7 @@ const router = Router();
 
 router.use(authMiddleware);
 
+// Task Routes
 router.get('/', taskController.listTasks);
 router.post('/', taskController.createTask);
 router.get('/:id', taskController.getTask);

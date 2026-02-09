@@ -1,6 +1,7 @@
 import { getPool, sql } from '../db/pool';
 import { Task } from '../types/models';
 
+// Create a New Task for the Authenticated User
 export async function createTask(params: {
     userId: number;
     title: string;
@@ -21,6 +22,7 @@ export async function createTask(params: {
     return result.recordset[0];
 }
 
+// Get All Tasks for the Authenticated User
 export async function getTasksByUser(userId: number): Promise<Task[]> {
     const pool = await getPool();
     const result = await pool
@@ -36,6 +38,7 @@ export async function getTasksByUser(userId: number): Promise<Task[]> {
     return result.recordset;
 }
 
+// Get task by ID for the Authenticated User
 export async function getTaskById(
     id: number,
     userId: number
@@ -54,6 +57,7 @@ export async function getTaskById(
     return result.recordset[0];
 }
 
+// Update a Task by ID for the Authenticated User
 export async function updateTask(
     id: number,
     userId: number,
@@ -84,6 +88,7 @@ export async function updateTask(
     return result.recordset[0];
 }
 
+// Delete a Task by ID for the Authenticated User
 export async function deleteTask(
     id: number,
     userId: number

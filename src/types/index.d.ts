@@ -1,5 +1,6 @@
 import { JwtPayload } from 'jsonwebtoken';
 
+// Extend Express Request Interface to Include User Information from JWT
 declare module 'express-serve-static-core' {
     interface Request {
         user?: {
@@ -9,6 +10,7 @@ declare module 'express-serve-static-core' {
     };
 };
 
+// Define a DecodedToken Interface for JWT Payloads
 export interface DecodedToken extends JwtPayload {
     sub: number;
     email: string;

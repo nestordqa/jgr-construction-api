@@ -1,6 +1,7 @@
 import { getPool, sql } from '../db/pool';
 import { User } from '../types/models';
 
+// Create a New User
 export async function createUser(params: {
     email: string;
     passwordHash: string;
@@ -19,6 +20,7 @@ export async function createUser(params: {
     return result.recordset[0];
 }
 
+// Get User by Email for Authentication
 export async function getUserByEmail(email: string): Promise<User | undefined> {
     const pool = await getPool();
     const result = await pool
@@ -33,6 +35,7 @@ export async function getUserByEmail(email: string): Promise<User | undefined> {
     return result.recordset[0];
 }
 
+// Ger User by ID for Authenticated Requests
 export async function getUserById(id: number): Promise<User | undefined> {
     const pool = await getPool();
     const result = await pool
